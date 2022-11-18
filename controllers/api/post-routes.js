@@ -3,12 +3,14 @@ const sequelize = require('../../config/connection');
 const { Post, User, Comment, Vote } = require('../../models');
 const withAuth = require('../../utils/auth');
 const multer = require('multer');
-const storage = multer.diskStorage('/uploads')
-const upload = multer({ storage: storage })
+const storage = multer.memoryStorage('./uploads');
+const upload = multer({ storage: storage });
+
+
 
 
 // get all users
-router.get('/', (req, res) => {
+router.get('/', upload.array(Post.image_input), (req, res) => {
   console.log('======================');
   Post.findAll({
     attributes: [
@@ -40,7 +42,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', upload.single(Post.image_input), (req, res) => {
   Post.findOne({
     where: {
       id: req.params.id
@@ -81,7 +83,7 @@ router.get('/:id', (req, res) => {
 });
 
 //POST NEW POST
-router.post('/', withAuth,  (req, res) => {
+router.post('/', withAuth, upload.single(Post.image_input), (req, res) => {
   Post.create({
     title: req.body.title,
     image_input: req.body.image_input,
