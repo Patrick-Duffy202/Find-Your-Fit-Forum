@@ -3,14 +3,17 @@ const sequelize = require('../../config/connection');
 const { Post, User, Comment, Vote } = require('../../models');
 const withAuth = require('../../utils/auth');
 const multer = require('multer');
-const storage = multer.memoryStorage('./uploads');
+const storage = multer.diskStorage('./uploads');
 const upload = multer({ storage: storage });
+var cors = require('cors');
+const btoa = require('btoa');
+const imageConversion = require("image-conversion");
 
 
 
 
 // get all users
-router.get('/', upload.array(Post.image_input), (req, res) => {
+router.get('/', cors(),  (req, res) => {
   console.log('======================');
   Post.findAll({
     attributes: [
@@ -42,7 +45,7 @@ router.get('/', upload.array(Post.image_input), (req, res) => {
     });
 });
 
-router.get('/:id', upload.single(Post.image_input), (req, res) => {
+router.get('/:id', cors(),  (req, res) => {
   Post.findOne({
     where: {
       id: req.params.id
@@ -83,13 +86,14 @@ router.get('/:id', upload.single(Post.image_input), (req, res) => {
 });
 
 //POST NEW POST
-router.post('/', withAuth, upload.single(Post.image_input), (req, res) => {
+router.post('/', withAuth, cors(), upload.single(Post.image_input), (req, res) => {
   Post.create({
     title: req.body['post-title'],
     image_input: 'uploads/'+req.file?.filename,
     user_id: req.session.user_id
   })
-    .then(dbPostData => res.redirect('/dashboard')    )
+    .then(dbPostData => res.json(dbPostData))
+    
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
