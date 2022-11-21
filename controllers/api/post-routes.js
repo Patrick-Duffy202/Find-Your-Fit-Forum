@@ -98,7 +98,7 @@ router.post('/', withAuth, upload.single('image-input'), (req, res) => {
     image_input: 'uploads/'+req.file?.filename,
     user_id: req.session.user_id
   })
-    .then(dbPostData => res.json(dbPostData))
+    .then(dbPostData => res.redirect('/dashboard')    )
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
