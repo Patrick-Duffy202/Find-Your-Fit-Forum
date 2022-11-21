@@ -3,10 +3,18 @@ const sequelize = require('../../config/connection');
 const { Post, User, Comment, Vote } = require('../../models');
 const withAuth = require('../../utils/auth');
 const multer = require('multer');
-const storage = multer.memoryStorage('./uploads');
+const path = require('path');
+// const storage = multer.memoryStorage('public/uploads');
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/uploads')
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname))
+  }
+})
 const upload = multer({ storage: storage });
-
-
 
 
 // get all users
@@ -83,10 +91,11 @@ router.get('/:id', upload.single(Post.image_input), (req, res) => {
 });
 
 //POST NEW POST
-router.post('/', withAuth, upload.single(Post.image_input), (req, res) => {
+router.post('/', withAuth, upload.single('image-input'), (req, res) => {
+  console.log(req)
   Post.create({
-    title: req.body.title,
-    image_input: req.body.image_input,
+    title: req.body['post-title'],
+    image_input: 'uploads/'+req.file?.filename,
     user_id: req.session.user_id
   })
     .then(dbPostData => res.json(dbPostData))
