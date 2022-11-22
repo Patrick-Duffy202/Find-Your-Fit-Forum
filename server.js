@@ -7,11 +7,10 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const exphbs = require('express-handlebars');
 const hbs = exphbs.create({ helpers });
-var cors = require('cors')
 
 const session = require('express-session');
 const multer = require('multer');
-const storage = multer.diskStorage('./uploads');
+const storage = multer.memoryStorage('./uploads');
 const upload = multer({ storage: storage });
 
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -26,7 +25,6 @@ const sess = {
   })
 };
 
-app.use(cors());
 app.use(session(sess));
 app.use(upload, [multer]);
 app.engine('handlebars', hbs.engine);
@@ -34,7 +32,8 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.get("/", express.static(path.join(__dirname, './uploads')))
+
+// app.get("/", express.static(path.join(__dirname, "./uploads")))
 
 // turn on routes
 app.use(routes);
