@@ -50,10 +50,10 @@ router.get('/',  (req, res) => {
     });
 });
 
-router.get('/:id', upload.single('image-input'), (req, res) => {
+router.get('/:id', upload.single('image-input'),  (req, res) => {
   Post.findOne({
     where: {
-      id: req.params.id,
+      id: req.params.id
     },
     attributes: [
       'id',
@@ -99,7 +99,7 @@ router.post('/', withAuth, upload.single('image-input'), (req, res) => {
     image_input: 'uploads/'+req.file?.filename,
     user_id: req.session.user_id
   })
-    .then(dbPostData => res.redirect('/dashboard')    )
+    .then(dbPostData => res.redirect('/dashboard')  )
     .catch(err => {
       console.log(err);
       res.status(500).json(err);

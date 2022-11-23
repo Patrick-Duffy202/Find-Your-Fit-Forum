@@ -36,8 +36,8 @@ app.use(upload, [multer]);
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static('./uploads'));
 
-// app.get("/", express.static(path.join(__dirname, "./uploads")))
 
 // turn on routes
 app.use(routes);
