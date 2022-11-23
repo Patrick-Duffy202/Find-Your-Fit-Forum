@@ -1,11 +1,11 @@
 
 async function newFormHandler(event) {
     event.preventDefault();
-  
+    
     const title = document.querySelector('input[name="post-title"]').value;
     const image_input = document.querySelector('input[name="image-input"]').value;
     
-    
+
   
     const response = await fetch(`/api/posts`, {
       method: 'POST',
@@ -13,6 +13,7 @@ async function newFormHandler(event) {
         title,
         image_input,
       }),
+      
       headers: {
         'Content-Type': 'application/json'
       }
@@ -25,5 +26,5 @@ async function newFormHandler(event) {
     }
   }
   
-  document.querySelector('.new-post-form').addEventListener('submit', newFormHandler);
+  // document.querySelector('.new-post-form').addEventListener('submit', newFormHandler);
   
