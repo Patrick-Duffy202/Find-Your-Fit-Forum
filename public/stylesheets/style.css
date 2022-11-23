@@ -193,3 +193,8 @@
     background-position: center;
     background-size: cover;
   }
+
+  img{
+    width: 375px;
+    height: 211px;
+}

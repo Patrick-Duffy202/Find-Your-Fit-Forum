@@ -3,12 +3,22 @@ const sequelize = require('../../config/connection');
 const { Post, User, Comment, Vote } = require('../../models');
 const withAuth = require('../../utils/auth');
 const multer = require('multer');
-const storage = multer.diskStorage('/uploads')
-const upload = multer({ storage: storage })
+const path = require('path');
+// const storage = multer.memoryStorage('public/uploads');
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/uploads')
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname))
+  }
+})
+const upload = multer({ storage: storage });
 
 
 // get all users
-router.get('/', (req, res) => {
+router.get('/',  (req, res) => {
   console.log('======================');
   Post.findAll({
     attributes: [
@@ -40,7 +50,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', upload.single('image-input'),  (req, res) => {
   Post.findOne({
     where: {
       id: req.params.id
@@ -67,12 +77,13 @@ router.get('/:id', (req, res) => {
       }
     ]
   })
-    .then(dbPostData => {
+    .then(dbPostData =>  {
       if (!dbPostData) {
         res.status(404).json({ message: 'No post found with this id' });
         return;
       }
       res.json(dbPostData);
+      
     })
     .catch(err => {
       console.log(err);
@@ -81,13 +92,14 @@ router.get('/:id', (req, res) => {
 });
 
 //POST NEW POST
-router.post('/', withAuth,  (req, res) => {
+router.post('/', withAuth, upload.single('image-input'), (req, res) => {
+  console.log(req)
   Post.create({
-    title: req.body.title,
-    image_input: req.body.image_input,
+    title: req.body['post-title'],
+    image_input: 'uploads/'+req.file?.filename,
     user_id: req.session.user_id
   })
-    .then(dbPostData => res.json(dbPostData))
+    .then(dbPostData => res.redirect('/dashboard')  )
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
