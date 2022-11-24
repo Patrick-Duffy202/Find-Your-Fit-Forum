@@ -1,7 +1,13 @@
 * {
     box-sizing: border-box;
   }
-  
+
+  :root {
+    --primary: #2364AA;
+    --secondary: #3DA5D9;
+    --tertiary: #FCFC62;
+  }
+
   body, html {
     height: 100%;
     padding: 0;
