@@ -96,7 +96,7 @@ router.post('/', withAuth, upload.single('image-input'), (req, res) => {
   console.log(req)
   Post.create({
     title: req.body['post-title'],
-    image_input: 'uploads/'+req.file?.filename,
+    image_input: '/uploads/'+req.file?.filename,
     user_id: req.session.user_id
   })
     .then(dbPostData => res.redirect('/dashboard')  )

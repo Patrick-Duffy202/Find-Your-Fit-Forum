@@ -33,6 +33,7 @@
     <!-- End of Header Container -->
 
     <!-- Start of Main Container-->
+    {{#if loggedIn}}
     <div class="container-fluid" id="main-container">
       <div class="row">
         <!-- Start of Feed Column -->
@@ -62,6 +63,25 @@
       <a class="col" id="thanks">Thanks for visiting!</a>
     </footer>
   </div>
+  {{else}}
+  <div class="container-fluid" id="main-container">
+      <div class="row">
+        <!-- Start of Feed Column -->
+        <div class="col-12 left-side">
+          <div class="container" id="posts-container">
+          {{{ body }}}
+          </div>
+        </div>
+        <!-- End of Feed Column -->
+      </div>
+    <!-- End of Main Container-->
+
+    <!-- Start of Footer Container -->
+    <footer class="row">
+      <a class="col" id="thanks">Thanks for visiting!</a>
+    </footer>
+  </div>
+  {{/if}}
   
   {{#if loggedIn}}
   <script src="/javascript/logout.js"></script>

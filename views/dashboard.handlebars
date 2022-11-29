@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/stylesheets/style2.css">
+
 <section>
   <h2>Create New Post</h2>
 
@@ -11,21 +13,21 @@
       
       <input type="file" id="image-input" accept="image/jpeg, image/png, image/jpg" name="image-input">
     </div>
-    <button type="submit" value= "upload" class="btn">Create</button>
+    <button type="submit" value= "upload" class="btn btn-create">Create</button>
   </form>
 </section>
 
 {{#if posts.length}}
 <section>
   <h2>Your Posts</h2>
-  <ol>
+  <ul id="your-posts-list">
     {{#each posts as |post|}}
     <li>
       {{> post-info post}}
       <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
     </li>
     {{/each}}
-  </ol>
+  </ul>
 </section>
 {{/if}}
 
