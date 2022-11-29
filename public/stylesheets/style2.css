@@ -96,10 +96,16 @@
     font-size: 1em;
   }
   
-  main {
+  form {
     flex: 1;
     padding: 2% 4%;
+    background-image:url(/public/assets/images/download-1.jpeg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: auto;
   }
+
+
   
   .btn-no-style {
     background: none;
@@ -315,4 +321,27 @@ footer {
 .meta p {
     font-weight: bold;
     color: black;
+}
+
+.container-login{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+
+.login-form{
+  color: var(--tertiary);
+  background-color:var(--primary);
+  padding: 5px;
+  width: 50%;
+text-align: center;
+}
+
+.signup-form{
+color: var(--tertiary);
+padding: 8px;
+background-color: var(--secondary);
+width: 50%;
+text-align: center;
 }
