@@ -10,15 +10,17 @@
     <!-- Start of Post Info Row-->
     <div class="row post-info">
       <!-- Title Column-->
-      <div class="col title-date">
+      <div class="col-6 title-date">
         <a class="title"href="{{image_input}}" target="_blank">{{title}}
-        <p class="date">{{format_date created_at}}</p>
+        <p class="date">{{format_date created_at}} by {{user.username}}</p>
         </a>
       </div>
       <!-- Meta Info Column -->
-      <div class="col meta">
-        {{user.username}}  {{vote_count}} <button class=" "><i class="bi bi-arrow-up-square"></i></button> {{format_plural "Up Vote" vote_count}}
-        <a class="comments-button" href="/post/{{id}}">{{comments.length}} {{format_plural "Comment" comments.length}} </a>
+      <div class="col-6 meta">
+        <div class="row info-row">
+        <p class="col-7 user-info">{{vote_count}} {{format_plural "Up Vote" vote_count}}</p> 
+        <a class="col-5 comments-button" href="/post/{{id}}">{{comments.length}} {{format_plural "Comment" comments.length}} </a>
+        </div>
      </div>
   </div>
   <!-- End of Post Container-->

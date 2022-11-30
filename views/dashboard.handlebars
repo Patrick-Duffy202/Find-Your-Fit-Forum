@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/stylesheets/style2.css">
 
-<section>
-  <h2>Create New Post</h2>
+<section id="create-post-section">
+  <h2 id="create-post-title">Create New Post</h2>
 
   <form class="new-post-form" action="/api/posts" method="post" enctype="multipart/form-data">
     <div>
@@ -18,8 +18,8 @@
 </section>
 
 {{#if posts.length}}
-<section>
-  <h2>Your Posts</h2>
+<section id="your-posts-section">
+  <h2 id="your-posts-title">Your Posts</h2>
   <ul id="your-posts-list">
     {{#each posts as |post|}}
     <li>

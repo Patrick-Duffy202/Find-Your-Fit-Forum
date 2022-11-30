@@ -32,38 +32,6 @@
     </div>
     <!-- End of Header Container -->
 
-    <!-- Start of Main Container-->
-    {{#if loggedIn}}
-    <div class="container-fluid" id="main-container">
-      <div class="row">
-        <!-- Start of Feed Column -->
-        <div class="col-8 left-side">
-          <div class="container" id="posts-container">
-          {{{ body }}}
-          </div>
-        </div>
-        <!-- End of Feed Column -->
-
-        <!-- Start of Comments Column -->
-        <div class="col-4 right-side">
-          <ol>
-            <li> Hi! </li>
-            <li> Hi! </li>
-            <li> Hi! </li>
-            <li> Hi! </li>
-            <li> Hi! </li>
-          </ol>
-        </div>
-        <!-- Start of Comments Column -->
-      </div>
-    <!-- End of Main Container-->
-
-    <!-- Start of Footer Container -->
-    <footer class="row">
-      <a class="col" id="thanks">Thanks for visiting!</a>
-    </footer>
-  </div>
-  {{else}}
   <div class="container-fluid" id="main-container">
       <div class="row">
         <!-- Start of Feed Column -->
@@ -78,10 +46,9 @@
 
     <!-- Start of Footer Container -->
     <footer class="row">
-      <a class="col" id="thanks">Thanks for visiting!</a>
+      <a class="col" id="thanks">Thanks for visiting! Copyright @ Find Your Fit LLC. Made by Patrick, Darby and Cam. </a>
     </footer>
   </div>
-  {{/if}}
   
   {{#if loggedIn}}
   <script src="/javascript/logout.js"></script>
