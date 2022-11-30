@@ -1,16 +1,28 @@
+<!-- Start of Post -->
 <article class="post">
-  <div class="title">
-    <a href="{{image_input}}" target="_blank">{{title}}</a>
-    <span>({{image_input}})</span>
-    <div id="display_image">
-        <img src= {{image_input}} alt="">
+  <!-- Start of Post Container-->
+  <div class="container post-container">
+    <!-- Start of Image Row-->
+    <div class="row each-post-pic">
+      <img class="col img-col" src= {{image_input}} alt="">
     </div>
-
+    <!-- End of Image Row-->
+    <!-- Start of Post Info Row-->
+    <div class="row post-info">
+      <!-- Title Column-->
+      <div class="col-6 title-date">
+        <a class="title"href="{{image_input}}" target="_blank">{{title}}
+        <p class="date">{{format_date created_at}} by {{user.username}}</p>
+        </a>
+      </div>
+      <!-- Meta Info Column -->
+      <div class="col-6 meta">
+        <div class="row info-row">
+        <p class="col-7 user-info">{{vote_count}} {{format_plural "Up Vote" vote_count}}</p> 
+        <a class="col-5 comments-button" href="/post/{{id}}">{{comments.length}} {{format_plural "Comment" comments.length}} </a>
+        </div>
+     </div>
   </div>
-  <div class="meta">
-    {{vote_count}} {{format_plural "point" vote_count}} by {{user.username}} on {{format_date created_at}}
-    
-    <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}} </a>
-     
-  </div>
+  <!-- End of Post Container-->
 </article>
+<!-- End of Post-->
