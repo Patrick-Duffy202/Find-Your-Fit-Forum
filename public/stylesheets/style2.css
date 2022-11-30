@@ -323,25 +323,60 @@ footer {
     color: black;
 }
 
-.container-login{
+.container-login {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
-
-
-.login-form{
+.login-form {
   color: var(--tertiary);
-  background-color:var(--primary);
-  padding: 5px;
+  background-color: var(--primary);
+  padding: 8px;
   width: 50%;
-text-align: center;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  align-items: center;
+}
+.signup-form {
+  color: var(--tertiary);
+  padding: 8px;
+  background-color: var(--secondary);
+  width: 50%;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
 
-.signup-form{
-color: var(--tertiary);
-padding: 8px;
-background-color: var(--secondary);
-width: 50%;
-text-align: center;
+.new-post {
+  color: var(--tertiary);
+  padding-top: 10px;
+}
+.new-post-form {
+  background-color: var(--primary);
+  color: var(--tertiary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1vw;
+  padding: 10px 0px 10px 0px;
+  margin-bottom: 10px;
+}
+.btn-create {
+  background-color: var(--tertiary);
+}
+.your-post{
+  color: var(--tertiary);
+  padding-top: 10px;
+}
+.submit-signup {
+  background-color: var(--secondary);
+  padding: 5px;
+}
+.submit-login {
+  background-color: var(--primary);
+  padding: 5px;
 }
