@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="/stylesheets/style2.css">
+
+<section id="create-post-section">
+  <h2 id="create-post-title">Create New Post</h2>
+
+  <form class="new-post-form" action="/api/posts" method="post" enctype="multipart/form-data">
+    <div>
+      <label for="post-title">Title</label>
+      <input type="text" id="post-title" name="post-title" />
+    </div>
+    <div>
+      <label for="image-input">Image</label>
+      
+      <input type="file" id="image-input" accept="image/jpeg, image/png, image/jpg" name="image-input">
+    </div>
+    <button type="submit" value= "upload" class="btn btn-create">Create</button>
+  </form>
+</section>
+
+{{#if posts.length}}
+<section id="your-posts-section">
+  <h2 id="your-posts-title">Your Posts</h2>
+  <ul id="your-posts-list">
+    {{#each posts as |post|}}
+    <li>
+      {{> post-info post}}
+      <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
+    </li>
+    {{/each}}
+  </ul>
+</section>
+{{/if}}
+
+<script src="/javascript/add-post.js"></script>
