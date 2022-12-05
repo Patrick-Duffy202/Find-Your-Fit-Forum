@@ -29,5 +29,8 @@ Camden Barnard - Front end styling and overall display
 Darby Biddy - Front end styling and overall display 
 
 # Links
+Video Demo:
+https://drive.google.com/file/d/1O9U-g5noF4oHpedbFWnokvBl353XSQSI/view
 
+Github link:
 https://github.com/Patrick-Duffy202/Find-Your-Fit-Forum
