@@ -1,4 +1,4 @@
-// import all models
+
 const Post = require('./Publish');
 const User = require('./Person');
 const Vote = require('./Castvote');
